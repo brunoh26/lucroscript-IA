@@ -1,0 +1,363 @@
+import React, { useState, useEffect } from 'react'
+
+const PLANOS = [
+  {
+    id: 'start',
+    nome: 'Start',
+    preco: '29,90',
+    parcelas: null,
+    badge: null,
+    cor: '#C9A84C',
+    descricao: 'Ideal para quem está começando a usar IA para vender.',
+    checkoutUrl: 'COLE_AQUI_O_LINK_CAKTO_PLANO_START',
+    recursos: [
+      '5 scripts de vendas por mês',
+      'Modelos de abordagem via WhatsApp',
+      'Respostas para objeções comuns',
+      'Suporte por e-mail',
+    ],
+  },
+  {
+    id: 'pro',
+    nome: 'Pro',
+    preco: '79,90',
+    parcelas: null,
+    badge: 'MAIS POPULAR',
+    cor: '#E8C96A',
+    descricao: 'Para vendedores que querem escalar resultados com IA todos os dias.',
+    checkoutUrl: 'COLE_AQUI_O_LINK_CAKTO_PLANO_PRO',
+    recursos: [
+      'Scripts ilimitados por mês',
+      'Fluxos completos de vendas',
+      'Adaptação por nicho e produto',
+      'Templates para stories e feed',
+      'Suporte prioritário',
+    ],
+  },
+  {
+    id: 'black',
+    nome: 'Black',
+    preco: '197,00',
+    parcelas: '12x de R$ 19,70',
+    badge: 'ACESSO TOTAL',
+    cor: '#FFFFFF',
+    descricao: 'Tudo que existe + mentorias e estratégias exclusivas para fechar grandes vendas.',
+    checkoutUrl: 'COLE_AQUI_O_LINK_CAKTO_PLANO_BLACK',
+    recursos: [
+      'Tudo do plano Pro',
+      'Scripts para alto ticket',
+      'Playbook de fechamento Black',
+      'Grupo VIP no WhatsApp',
+      'Mentoria mensal ao vivo',
+      'Atualizações vitalícias',
+    ],
+  },
+]
+
+export default function App() {
+  const [visivel, setVisivel] = useState(false)
+  useEffect(() => {
+    const t = setTimeout(() => setVisivel(true), 100)
+    return () => clearTimeout(t)
+  }, [])
+
+  return (
+    <div style={{ minHeight: '100vh', background: '#0A0A0A' }}>
+      <Hero visivel={visivel} />
+      <Beneficios />
+      <Precos />
+      <Footer />
+    </div>
+  )
+}
+
+function Hero({ visivel }) {
+  return (
+    <section style={{
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      textAlign: 'center',
+      padding: '80px 24px 60px',
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.12) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
+      <div style={{
+        opacity: visivel ? 1 : 0,
+        transform: visivel ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'all 0.8s cubic-bezier(.16,1,.3,1)',
+      }}>
+        <div style={{
+          display: 'inline-block',
+          border: '1px solid rgba(201,168,76,0.4)',
+          borderRadius: '100px',
+          padding: '6px 18px',
+          fontSize: '11px',
+          letterSpacing: '2px',
+          textTransform: 'uppercase',
+          color: '#C9A84C',
+          marginBottom: '32px',
+          fontFamily: 'Syne, sans-serif',
+          fontWeight: 600,
+        }}>
+          Inteligência Artificial para Vendas
+        </div>
+        <h1 style={{
+          fontFamily: 'Syne, sans-serif',
+          fontSize: 'clamp(2.4rem, 7vw, 5rem)',
+          fontWeight: 800,
+          lineHeight: 1.08,
+          letterSpacing: '-0.02em',
+          color: '#F5F0E8',
+          maxWidth: '760px',
+          marginBottom: '24px',
+        }}>
+          Scripts que vendem.<br />
+          <span style={{
+            background: 'linear-gradient(90deg, #C9A84C, #E8C96A)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}>Gerados por IA.</span>
+        </h1>
+        <p style={{
+          fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
+          color: '#888880',
+          maxWidth: '520px',
+          margin: '0 auto 48px',
+          lineHeight: 1.7,
+        }}>
+          Pare de improvisar. Com o LucroScript IA você tem sempre o script certo,
+          para o cliente certo, na hora certa — e fecha mais vendas todo dia.
+        </p>
+        <a href="#precos" style={{
+          display: 'inline-block',
+          background: 'linear-gradient(135deg, #C9A84C, #E8C96A)',
+          color: '#0A0A0A',
+          fontFamily: 'Syne, sans-serif',
+          fontWeight: 700,
+          fontSize: '1rem',
+          padding: '16px 40px',
+          borderRadius: '8px',
+          textDecoration: 'none',
+          letterSpacing: '0.02em',
+          boxShadow: '0 8px 32px rgba(201,168,76,0.25)',
+        }}>
+          Ver Planos e Preços →
+        </a>
+      </div>
+    </section>
+  )
+}
+
+function Beneficios() {
+  const items = [
+    { icone: '⚡', titulo: 'Scripts em segundos', texto: 'Descreva seu produto e receba scripts prontos para WhatsApp, DM e ligação.' },
+    { icone: '🎯', titulo: 'Quebra de objeções', texto: 'Respostas inteligentes para "tá caro", "vou pensar" e qualquer objeção.' },
+    { icone: '📈', titulo: 'Aumento de conversão', texto: 'Scripts testados que guiam o cliente do primeiro contato até o pagamento.' },
+    { icone: '🤖', titulo: 'IA treinada em vendas', texto: 'Não é um ChatGPT genérico. É uma IA especializada em fechamento.' },
+  ]
+  return (
+    <section style={{ padding: '80px 24px', maxWidth: '1100px', margin: '0 auto' }}>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+        gap: '24px',
+      }}>
+        {items.map((item) => (
+          <div key={item.titulo} style={{
+            background: '#111111',
+            border: '1px solid #222222',
+            borderRadius: '12px',
+            padding: '32px 24px',
+          }}>
+            <div style={{ fontSize: '2rem', marginBottom: '16px' }}>{item.icone}</div>
+            <h3 style={{
+              fontFamily: 'Syne, sans-serif',
+              fontWeight: 700,
+              fontSize: '1.1rem',
+              color: '#F5F0E8',
+              marginBottom: '10px',
+            }}>{item.titulo}</h3>
+            <p style={{ color: '#888880', fontSize: '0.95rem', lineHeight: 1.6 }}>{item.texto}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function Precos() {
+  return (
+    <section id="precos" style={{ padding: '80px 24px 100px', maxWidth: '1100px', margin: '0 auto' }}>
+      <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+        <p style={{
+          fontFamily: 'Syne, sans-serif',
+          fontSize: '11px',
+          letterSpacing: '3px',
+          textTransform: 'uppercase',
+          color: '#C9A84C',
+          marginBottom: '16px',
+        }}>Escolha seu plano</p>
+        <h2 style={{
+          fontFamily: 'Syne, sans-serif',
+          fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
+          fontWeight: 800,
+          color: '#F5F0E8',
+          lineHeight: 1.2,
+        }}>
+          Invista uma vez.<br />Venda todo dia.
+        </h2>
+      </div>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: '24px',
+        alignItems: 'start',
+      }}>
+        {PLANOS.map((plano) => (
+          <CardPlano key={plano.id} plano={plano} />
+        ))}
+      </div>
+      <p style={{
+        textAlign: 'center',
+        color: '#555550',
+        fontSize: '0.85rem',
+        marginTop: '48px',
+      }}>
+        🔒 Pagamento 100% seguro via Cakto · Garantia de 7 dias
+      </p>
+    </section>
+  )
+}
+
+function CardPlano({ plano }) {
+  const isDestaque = plano.id === 'pro'
+  return (
+    <div style={{
+      background: isDestaque ? '#141414' : '#111111',
+      border: `1px solid ${isDestaque ? 'rgba(201,168,76,0.5)' : '#1E1E1E'}`,
+      borderRadius: '16px',
+      padding: '36px 28px',
+      position: 'relative',
+      boxShadow: isDestaque ? '0 0 60px rgba(201,168,76,0.08)' : 'none',
+    }}>
+      {plano.badge && (
+        <div style={{
+          position: 'absolute',
+          top: '-14px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          background: 'linear-gradient(90deg, #C9A84C, #E8C96A)',
+          color: '#0A0A0A',
+          fontFamily: 'Syne, sans-serif',
+          fontWeight: 700,
+          fontSize: '10px',
+          letterSpacing: '2px',
+          padding: '5px 16px',
+          borderRadius: '100px',
+          whiteSpace: 'nowrap',
+        }}>
+          {plano.badge}
+        </div>
+      )}
+      <p style={{
+        fontFamily: 'Syne, sans-serif',
+        fontWeight: 700,
+        fontSize: '0.85rem',
+        letterSpacing: '3px',
+        textTransform: 'uppercase',
+        color: plano.cor,
+        marginBottom: '20px',
+      }}>{plano.nome}</p>
+      <div style={{ marginBottom: '8px' }}>
+        <span style={{ color: '#555550', fontSize: '0.9rem' }}>R$ </span>
+        <span style={{
+          fontFamily: 'Syne, sans-serif',
+          fontWeight: 800,
+          fontSize: 'clamp(2.2rem, 5vw, 2.8rem)',
+          color: '#F5F0E8',
+          lineHeight: 1,
+        }}>{plano.preco}</span>
+        <span style={{ color: '#555550', fontSize: '0.85rem' }}> /mês</span>
+      </div>
+      {plano.parcelas && (
+        <p style={{ color: '#888880', fontSize: '0.8rem', marginBottom: '8px' }}>
+          ou {plano.parcelas}
+        </p>
+      )}
+      <p style={{
+        color: '#666660',
+        fontSize: '0.9rem',
+        lineHeight: 1.6,
+        marginTop: '16px',
+        marginBottom: '28px',
+      }}>{plano.descricao}</p>
+      <div style={{ borderTop: '1px solid #1E1E1E', marginBottom: '24px' }} />
+      <ul style={{ listStyle: 'none', marginBottom: '36px' }}>
+        {plano.recursos.map((r) => (
+          <li key={r} style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: '10px',
+            color: '#AAAAAA',
+            fontSize: '0.9rem',
+            marginBottom: '12px',
+          }}>
+            <span style={{ color: plano.cor, marginTop: '2px', flexShrink: 0 }}>✓</span>
+            {r}
+          </li>
+        ))}
+      </ul>
+      <a
+        href={plano.checkoutUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: 'block',
+          width: '100%',
+          textAlign: 'center',
+          padding: '15px',
+          borderRadius: '8px',
+          fontFamily: 'Syne, sans-serif',
+          fontWeight: 700,
+          fontSize: '0.95rem',
+          letterSpacing: '0.04em',
+          textDecoration: 'none',
+          background: isDestaque ? 'linear-gradient(135deg, #C9A84C, #E8C96A)' : 'transparent',
+          color: isDestaque ? '#0A0A0A' : plano.cor,
+          border: isDestaque ? 'none' : `1px solid ${plano.cor}40`,
+        }}
+      >
+        Assinar plano {plano.nome} →
+      </a>
+    </div>
+  )
+}
+
+function Footer() {
+  return (
+    <footer style={{
+      borderTop: '1px solid #1A1A1A',
+      padding: '32px 24px',
+      textAlign: 'center',
+    }}>
+      <p style={{
+        fontFamily: 'Syne, sans-serif',
+        fontWeight: 700,
+        fontSize: '1.1rem',
+        color: '#C9A84C',
+        marginBottom: '8px',
+      }}>LucroScript IA</p>
+      <p style={{ color: '#444440', fontSize: '0.82rem' }}>
+        © {new Date().getFullYear()} LucroScript IA · Todos os direitos reservados
+      </p>
+    </footer>
+  )
+      }
