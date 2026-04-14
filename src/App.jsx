@@ -6,8 +6,7 @@ export default function App() {
       nome: 'Start', 
       preco: '29,90', 
       desc: 'Ideal para quem está dando os primeiros passos no digital.',
-      // LINK CORRIGIDO PARA 29,90
-      link: 'https://pay.cakto.com.br/ty8w2u2', 
+      link: 'https://pay.cakto.com.br/3cc2ayg_849244', // LINK DE 29,90 (START)
       cor: '#00FA9A'
     },
     { 
@@ -15,15 +14,14 @@ export default function App() {
       preco: '79,90', 
       desc: 'Acesso completo às melhores ferramentas de conversão.', 
       destaque: true,
-      link: 'https://pay.cakto.com.br/bua2g4g', 
+      link: 'https://pay.cakto.com.br/bua2g4g', // LINK DE 79,90 (PRO)
       cor: '#FFD700'
     },
     { 
       nome: 'Black', 
       preco: '197,00', 
       desc: 'Mentoria, suporte prioritário e scripts exclusivos VIP.',
-      // LINK CORRIGIDO PARA 197,00
-      link: 'https://pay.cakto.com.br/3cc2ayg_849244', 
+      link: 'https://pay.cakto.com.br/ty8w2u2', // LINK DE 197,00 (BLACK)
       cor: '#FFD700'
     }
   ];
@@ -59,12 +57,6 @@ export default function App() {
             </a>
           </div>
         ))}
-      </div>
-      
-      <div style={{ marginTop: '60px', padding: '20px', borderTop: '1px solid #222' }}>
-        <p style={{ color: '#666', fontSize: '0.8rem' }}>
-          © 2026 MARCIANO L5 - NEGÓCIOS DIGITAIS.
-        </p>
       </div>
     </div>
   );
