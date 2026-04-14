@@ -6,8 +6,7 @@ export default function App() {
       nome: 'Start', 
       preco: '29,90', 
       desc: 'Ideal para quem está dando os primeiros passos no digital.',
-      // LINK QUE VOCÊ ME PASSOU PARA 29,90
-      link: 'https://pay.cakto.com.br/3cc2ayg_849244', 
+      link: 'https://pay.cakto.com.br/3cc2ayg_849244',
       cor: '#00FA9A'
     },
     { 
@@ -15,15 +14,14 @@ export default function App() {
       preco: '79,90', 
       desc: 'Acesso completo às melhores ferramentas de conversão.', 
       destaque: true,
-      link: 'https://pay.cakto.com.br/bua2g4g', 
+      link: 'https://pay.cakto.com.br/bua2g4g',
       cor: '#FFD700'
     },
     { 
       nome: 'Black', 
       preco: '197,00', 
       desc: 'Mentoria, suporte prioritário e scripts exclusivos VIP.',
-      // LINK QUE VOCÊ ME PASSOU PARA 197,00
-      link: 'https://pay.cakto.com.br/ty8w2u2', 
+      link: 'https://pay.cakto.com.br/ty8w2u2',
       cor: '#FFD700'
     }
   ];
@@ -45,7 +43,7 @@ export default function App() {
             </p>
             <p style={{ fontSize: '0.9rem', color: '#ccc', minHeight: '60px' }}>{plano.desc}</p>
             
-            <a href={plano.link} target="_blank" rel="noopener noreferrer">
+            <a href={plano.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
               <button style={{ 
                 backgroundColor: plano.cor, color: '#000', border: 'none', 
                 width: '100%', padding: '15px', borderRadius: '8px', 
