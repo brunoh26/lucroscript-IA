@@ -6,20 +6,23 @@ export default function App() {
       nome: 'Start', 
       preco: '29,90', 
       desc: 'Ideal para quem está dando os primeiros passos no digital.',
-      link: 'https://pay.cakto.com.br/ty8w2u2' 
+      link: 'https://pay.cakto.com.br/ty8w2u2', // LINK DE 29,90
+      cor: '#00FA9A'
     },
     { 
       nome: 'Pro', 
       preco: '79,90', 
       desc: 'Acesso completo às melhores ferramentas de conversão.', 
       destaque: true,
-      link: 'https://pay.cakto.com.br/bua2g4g'
+      link: 'https://pay.cakto.com.br/bua2g4g', // LINK DE 79,90
+      cor: '#FFD700'
     },
     { 
       nome: 'Black', 
       preco: '197,00', 
       desc: 'Mentoria, suporte prioritário e scripts exclusivos VIP.',
-      link: 'https://pay.cakto.com.br/3cc2ayg_849244'
+      link: 'https://pay.cakto.com.br/3cc2ayg_849244', // LINK DE 197,00
+      cor: '#FFD700'
     }
   ];
 
@@ -33,8 +36,7 @@ export default function App() {
           <div key={plano.nome} style={{ 
             border: plano.destaque ? '2px solid #FFD700' : '1px solid #333',
             padding: '30px', borderRadius: '15px', width: '280px', background: '#111',
-            boxShadow: plano.destaque ? '0 0 20px rgba(255, 215, 0, 0.2)' : 'none',
-            transition: 'transform 0.3s'
+            boxShadow: plano.destaque ? '0 0 20px rgba(255, 215, 0, 0.2)' : 'none'
           }}>
             <h2 style={{ color: '#FFD700', fontSize: '1.5rem' }}>PLANO {plano.nome.toUpperCase()}</h2>
             <p style={{ fontSize: '2.2rem', fontWeight: 'bold', margin: '15px 0' }}>
@@ -44,7 +46,7 @@ export default function App() {
             
             <a href={plano.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
               <button style={{ 
-                backgroundColor: plano.destaque ? '#FFD700' : '#00FA9A', 
+                backgroundColor: plano.cor, 
                 color: '#000', border: 'none', width: '100%',
                 padding: '15px', borderRadius: '8px', marginTop: '20px', 
                 fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem',
