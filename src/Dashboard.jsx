@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 
 const styles = {
   container: {
-    backgroundColor: '#000', // Fundo Preto Total
+    backgroundColor: '#000',
     minHeight: '100vh',
     fontFamily: 'sans-serif',
     color: '#fff',
+    display: 'flex',
+    flexDirection: 'column'
   },
   header: {
     backgroundColor: '#0a0a0a',
@@ -13,41 +15,27 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderBottom: '1px solid #FFD700', // Linha Ouro
+    borderBottom: '2px solid #FFD700',
     position: 'sticky',
     top: 0,
     zIndex: 100,
   },
   logo: {
     color: '#FFD700',
-    fontSize: '1.2rem',
+    fontSize: '1.4rem',
     fontWeight: 'bold',
-    letterSpacing: '1px'
-  },
-  goalArea: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '10px',
-  },
-  progressBar: {
-    width: '120px',
-    height: '8px',
-    backgroundColor: '#222',
-    borderRadius: '4px',
-    overflow: 'hidden',
-    border: '0.5px solid #FFD700'
-  },
-  progressFill: {
-    width: '15%', // Simulação de progresso real
-    height: '100%',
-    backgroundColor: '#00FA9A', // Verde Neon para destaque
+    letterSpacing: '2px'
   },
   main: {
+    flex: 1,
     padding: '20px',
     paddingBottom: '100px',
+    maxWidth: '600px',
+    margin: '0 auto',
+    width: '100%'
   },
   card: {
-    backgroundColor: '#0a0a0a',
+    backgroundColor: '#0d0d0d',
     padding: '20px',
     borderRadius: '15px',
     border: '1px solid #1a1a1a',
@@ -55,32 +43,39 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     gap: '15px',
-    boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.8)',
   },
   iconBox: {
     width: '45px',
     height: '45px',
-    borderRadius: '10px',
-    backgroundColor: '#111',
+    borderRadius: '12px',
+    backgroundColor: '#000',
     border: '1px solid #FFD700',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     color: '#FFD700',
-    fontSize: '1.3rem',
+    fontSize: '1.4rem',
   },
   cardLabel: {
-    fontSize: '0.8rem',
-    color: '#888',
-    textTransform: 'uppercase',
-    letterSpacing: '1px'
+    fontSize: '0.75rem',
+    color: '#666',
+    fontWeight: 'bold',
+    textTransform: 'uppercase'
   },
   cardValue: {
-    fontSize: '1.3rem',
+    fontSize: '1.4rem',
     fontWeight: 'bold',
     color: '#fff',
   },
-  // Menu Inferior Funcional
+  copilotoBox: {
+    background: 'linear-gradient(145deg, #111, #000)',
+    border: '1px solid #FFD700',
+    padding: '20px',
+    borderRadius: '15px',
+    marginTop: '20px',
+    position: 'relative'
+  },
   bottomNav: {
     position: 'fixed',
     bottom: 0,
@@ -88,51 +83,47 @@ const styles = {
     backgroundColor: '#0a0a0a',
     display: 'flex',
     justifyContent: 'space-around',
-    padding: '15px 0',
-    borderTop: '1px solid #FFD700',
+    padding: '12px 0',
+    borderTop: '1px solid #333',
   },
   navBtn: {
+    background: 'none',
+    border: 'none',
+    color: '#555',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: '5px',
+    gap: '4px',
     cursor: 'pointer',
-    background: 'none',
-    border: 'none',
-    color: '#888',
-    fontSize: '0.7rem',
-    transition: '0.3s'
+    fontSize: '0.7rem'
   },
-  navActive: {
-    color: '#FFD700', // Botão ativo fica Ouro
+  activeBtn: {
+    color: '#FFD700'
   }
 };
 
-export default function DashboardPremium() {
+export default function Dashboard() {
   const [tab, setTab] = useState('home');
+  const [userPlan] = useState('Black'); // Simula plano ativo
 
   return (
     <div style={styles.container}>
       
-      {/* HEADER TOP */}
+      {/* HEADER PROFISSIONAL */}
       <header style={styles.header}>
-        <div style={styles.logo}>L5 LUCROSCRIPT IA</div>
-        <div style={styles.goalArea}>
-          <div style={{textAlign: 'right'}}>
-            <div style={{fontSize: '0.7rem', color: '#FFD700'}}>META: R$ 10K</div>
-            <div style={styles.progressBar}>
-              <div style={styles.progressFill}></div>
-            </div>
+        <div style={styles.logo}>L5 LUCROSCRIPT</div>
+        <div style={{textAlign: 'right'}}>
+          <span style={{fontSize: '0.7rem', color: '#00FA9A'}}>META: R$ 10K</span>
+          <div style={{width: '100px', height: '6px', background: '#222', borderRadius: '3px', marginTop: '4px'}}>
+             <div style={{width: '15%', height: '100%', background: '#00FA9A', borderRadius: '3px'}}></div>
           </div>
-          <span style={{fontSize: '1.2rem'}}>💎</span>
         </div>
       </header>
 
-      {/* CONTEÚDO DINÂMICO */}
       <main style={styles.main}>
         {tab === 'home' && (
           <>
-            <h2 style={{marginBottom: '20px', fontSize: '1.2rem'}}>Visão Geral</h2>
+            <h2 style={{fontSize: '1.1rem', marginBottom: '20px', color: '#FFD700'}}>VISÃO GERAL DO IMPÉRIO</h2>
             
             <div style={styles.card}>
               <div style={styles.iconBox}>💰</div>
@@ -153,77 +144,55 @@ export default function DashboardPremium() {
             <div style={styles.card}>
               <div style={{...styles.iconBox, borderColor: '#00FA9A', color: '#00FA9A'}}>💳</div>
               <div>
-                <div style={styles.cardLabel}>Aprovação de Cartão</div>
-                <div style={styles.cardValue}>0%</div>
+                <div style={styles.cardLabel}>Aprovação Cartão</div>
+                <div style={styles.cardValue}>0 %</div>
               </div>
             </div>
 
-            <div style={styles.card}>
-              <div style={styles.iconBox}>🔄</div>
-              <div>
-                <div style={styles.cardLabel}>Chargeback</div>
-                <div style={styles.cardValue}>0%</div>
+            {/* MENSAGEM DO COPILOTO */}
+            <div style={styles.copilotoBox}>
+              <div style={{display: 'flex', gap: '15px'}}>
+                <span style={{fontSize: '2rem'}}>🤖🖋️</span>
+                <div>
+                  <h4 style={{color: '#FFD700', margin: '0 0 10px 0'}}>Copiloto do Milhão</h4>
+                  <p style={{fontSize: '0.85rem', color: '#ccc', lineHeight: '1.4'}}>
+                    "Seja bem-vindo, sócio! O painel está zerado, mas a ferramenta está pronta. 
+                    No modo <b>{userPlan === 'Black' ? 'CEO VIP' : 'Estrategista'}</b>, 
+                    eu cuido da copy e você cuida do lucro. Qual o nicho de hoje?"
+                  </p>
+                </div>
               </div>
             </div>
           </>
         )}
 
         {tab === 'mercado' && (
-          <div style={{textAlign: 'center', marginTop: '50px'}}>
-            <h2 style={{color: '#FFD700'}}>🔥 Infoprodutos em Alta</h2>
-            <p style={{color: '#888'}}>Escaneando o mercado mundial...</p>
-          </div>
-        )}
-
-        {tab === 'receita' && (
-          <div style={{textAlign: 'center', marginTop: '50px'}}>
-            <h2 style={{color: '#00FA9A'}}>📊 Gráficos de Escala</h2>
-            <p style={{color: '#888'}}>Seus dados de lucro aparecerão aqui.</p>
+          <div style={{textAlign: 'center', padding: '40px'}}>
+            <h2 style={{color: '#FFD700'}}>INFOPRODUTOS EM ALTA</h2>
+            <p style={{color: '#666', marginTop: '10px'}}>Escaneando tendências mundiais...</p>
+            <div style={{marginTop: '30px', padding: '20px', border: '1px dashed #333', borderRadius: '10px'}}>
+               Nicho sugerido: <b>Finanças / IA</b>
+            </div>
           </div>
         )}
       </main>
 
-      {/* BOTÃO DO COPILOTO (ROBÔ) */}
-      <div style={{
-        position: 'fixed', bottom: '90px', right: '20px', 
-        backgroundColor: '#FFD700', width: '55px', height: '55px', 
-        borderRadius: '50%', display: 'flex', alignItems: 'center', 
-        justifyContent: 'center', fontSize: '1.5rem', boxShadow: '0 0 15px #FFD700'
-      }}>
-        🤖
-      </div>
-
-      {/* MENU INFERIOR FUNCIONAL */}
+      {/* MENU INFERIOR (BOTTOM NAV) */}
       <footer style={styles.bottomNav}>
-        <button 
-          style={tab === 'home' ? {...styles.navBtn, ...styles.navActive} : styles.navBtn}
-          onClick={() => setTab('home')}
-        >
-          <span style={{fontSize: '1.2rem'}}>🏠</span>
+        <button onClick={() => setTab('home')} style={tab === 'home' ? {...styles.navBtn, ...styles.activeBtn} : styles.navBtn}>
+          <span style={{fontSize: '1.4rem'}}>🏠</span>
           <span>HOME</span>
         </button>
-
-        <button 
-          style={tab === 'mercado' ? {...styles.navBtn, ...styles.navActive} : styles.navBtn}
-          onClick={() => setTab('mercado')}
-        >
-          <span style={{fontSize: '1.2rem'}}>🔍</span>
+        <button onClick={() => setTab('mercado')} style={tab === 'mercado' ? {...styles.navBtn, ...styles.activeBtn} : styles.navBtn}>
+          <span style={{fontSize: '1.4rem'}}>🔍</span>
           <span>MERCADO</span>
         </button>
-
-        <button 
-          style={tab === 'receita' ? {...styles.navBtn, ...styles.navActive} : styles.navBtn}
-          onClick={() => setTab('receita')}
-        >
-          <span style={{fontSize: '1.2rem'}}>📈</span>
+        <button onClick={() => setTab('receita')} style={tab === 'receita' ? {...styles.navBtn, ...styles.activeBtn} : styles.navBtn}>
+          <span style={{fontSize: '1.4rem'}}>📊</span>
           <span>RECEITA</span>
         </button>
-
-        <button 
-          style={tab === 'perfil' ? {...styles.navBtn, ...styles.navActive} : styles.navBtn}
-          onClick={() => setTab('perfil')}
-        >
-          <span style={{fontSize: '1.2rem'}}>👤</span>
+        <button onClick={() => setTab('perfil')} style={tab === 'perfil' ? {...styles.navBtn, ...styles.activeBtn} : styles.navBtn}>
+          <span style={{fontSize: '1.4rem'}}>👤</span>
           <span>PERFIL</span>
         </button>
       </footer>
