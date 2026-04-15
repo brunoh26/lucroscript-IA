@@ -1,110 +1,87 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-// Estilos Reutilizáveis baseados nos prints da Kiwify
-const styles = {
-  container: {
-    backgroundColor: '#F3F4F6', // Cinza claro de fundo (igual image_4)
-    minHeight: '100vh',
-    fontFamily: 'sans-serif',
-    color: '#333',
-  },
-  header: {
-    backgroundColor: '#07834C', // Verde Kiwify (igual image_4)
-    color: '#fff',
-    padding: '10px 20px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    position: 'sticky',
-    top: 0,
-    zIndex: 100,
-  },
-  logo: {
-    fontSize: '1.2rem',
-    fontWeight: 'bold',
-  },
-  goalBarContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '10px',
-  },
-  goalBar: {
-    width: '150px',
-    height: '6px',
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-    borderRadius: '3px',
-    overflow: 'hidden',
-  },
-  goalProgress: {
-    width: '10%', // Simulação do progresso (0K)
-    height: '100%',
-    backgroundColor: '#fff',
-    borderRadius: '3px',
-  },
-  main: {
-    padding: '20px',
-    paddingBottom: '80px', // Espaço para o menu inferior
-  },
-  title: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    marginBottom: '20px',
-    color: '#1F2937', // Preto/Cinza escuro
-  },
-  filtersContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px',
-    marginBottom: '20px',
-  },
-  filter: {
-    backgroundColor: '#fff',
-    padding: '12px 15px',
-    borderRadius: '10px',
-    border: '1px solid #E5E7EB',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    cursor: 'pointer',
-    fontSize: '0.9rem',
-    color: '#4B5563',
-  },
-  card: {
-    backgroundColor: '#fff',
-    padding: '20px',
-    borderRadius: '12px',
-    border: '1px solid #E5E7EB',
-    marginBottom: '15px',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '15px',
-    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)', // Sombra leve
-  },
-  cardIcon: {
-    width: '40px',
-    height: '40px',
-    borderRadius: '8px',
-    backgroundColor: '#E6F3EC', // Verde claro de fundo dos ícones
-    color: '#07834C', // Verde ícone
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '1.2rem',
-  },
-  cardTitle: {
-    fontSize: '0.85rem',
-    color: '#6B7280', // Cinza texto (igual image_4)
-    marginBottom: '5px',
-  },
-  cardValue: {
-    fontSize: '1.2rem',
-    fontWeight: 'bold',
-    color: '#1F2937',
-  },
-  // Menu Inferior (Bottom Navigation)
-  bottomNav: {
-    position: 'fixed',
-    bottom: 0,
+export default function Dashboard() {
+  // Simulação de limites conforme os planos que você definiu
+  const [plano, setPlano] = useState('Black'); // Pode ser 'Start', 'Pro' ou 'Black'
+  
+  const limites = {
+    Start: { videos: 25, scripts: 30, bios: 15, modo: 'Estrategista' },
+    Pro: { videos: 80, scripts: 100, bios: 50, modo: 'Estrategista' },
+    Black: { videos: 150, scripts: 'Ilimitado', bios: 'Ilimitado', modo: 'CEO VIP 👑' }
+  };
+
+  const [uso, setUso] = useState({ videos: 12, scripts: 8, bios: 5 });
+
+  return (
+    <div style={{ backgroundColor: '#000', minHeight: '100vh', display: 'flex', color: '#fff', fontFamily: 'sans-serif' }}>
+      
+      {/* BARRA LATERAL (SIDEBAR) */}
+      <div style={{ width: '260px', background: '#0a0a0a', borderRight: '1px solid #FFD700', padding: '20px' }}>
+        <h2 style={{ color: '#FFD700', fontSize: '1.5rem', marginBottom: '40px' }}>L5 LUCROSCRIPT</h2>
+        
+        <nav>
+          <div style={navItem}>📊 Dashboard</div>
+          <div style={navItem}>🔥 Infoprodutos em Alta</div>
+          <div style={navItem}>🎬 Vídeos Virais IA</div>
+          <div style={navItem}>✍️ Scripts de Elite</div>
+          <div style={navItem}>📱 Bio Persuasiva</div>
+          <div style={navItem}>💬 Área de Membros</div>
+          <div style={{ ...navItem, marginTop: '50px', color: '#888' }}>⚙️ Configurações</div>
+        </nav>
+      </div>
+
+      {/* ÁREA PRINCIPAL */}
+      <div style={{ flex: 1, padding: '40px', overflowY: 'auto' }}>
+        <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+          <div>
+            <h1 style={{ fontSize: '1.8rem' }}>Painel do {limites[plano].modo}</h1>
+            <p style={{ color: '#FFD700' }}>Plano {plano} Ativo</p>
+          </div>
+          <button style={btnBusca}>🔍 BUSCAR TENDÊNCIAS MUNDIAIS</button>
+        </header>
+
+        {/* GRÁFICOS DE CONSUMO REAL */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '30px' }}>
+          <div style={cardStyle}>
+            <h3>Consumo de Vídeos Virais</h3>
+            <p style={{ fontSize: '0.8rem', color: '#888' }}>{uso.videos} de {limites[plano].videos} vídeos usados</p>
+            <div style={progressBg}><div style={{ ...progressFill, width: `${(uso.videos / limites[plano].videos) * 100}%`, backgroundColor: '#FFD700' }}></div></div>
+          </div>
+
+          <div style={cardStyle}>
+            <h3>Scripts & Bios</h3>
+            <p style={{ fontSize: '0.8rem', color: '#888' }}>Uso atual: {uso.scripts} gerados</p>
+            <div style={progressBg}><div style={{ ...progressFill, width: '30%', backgroundColor: '#00FA9A' }}></div></div>
+          </div>
+        </div>
+
+        {/* O COPILOTO DO MILHÃO (Boas-vindas inteligente) */}
+        <div style={{ background: 'linear-gradient(145deg, #111, #000)', padding: '30px', borderRadius: '15px', border: '1px solid #FFD700', position: 'relative' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
+            <div style={{ fontSize: '40px' }}>🤖🖋️</div>
+            <div>
+              <h3 style={{ color: '#FFD700', marginBottom: '10px' }}>Copiloto do Milhão diz:</h3>
+              <p style={{ fontStyle: 'italic', lineHeight: '1.6' }}>
+                "Seja bem-vindo ao império, sócio! O mercado não espera por ninguém. 
+                Seu plano <b>{plano}</b> te dá o poder do <b>Modo {limites[plano].modo}</b>. 
+                Analisei os gráficos e você tem {limites[plano].videos - uso.videos} vídeos virais prontos para serem criados. 
+                Qual nicho vamos dominar hoje?"
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ESTILOS RÁPIDOS
+const navItem = { padding: '15px 10px', cursor: 'pointer', borderBottom: '1px solid #111', transition: '0.3s', fontSize: '0.9rem' };
+const btnBusca = { background: '#FFD700', color: '#000', border: 'none', padding: '12px 20px', fontWeight: 'bold', borderRadius: '8px', cursor: 'pointer' };
+const cardStyle = { background: '#111', padding: '20px', borderRadius: '12px', border: '1px solid #222' };
+const progressBg = { background: '#222', height: '8px', borderRadius: '4px', marginTop: '15px' };
+const progressFill = { height: '100%', borderRadius: '4px', transition: '0.5s' };
+bottom: 0,
     left: 0,
     right: 0,
     backgroundColor: '#fff',
